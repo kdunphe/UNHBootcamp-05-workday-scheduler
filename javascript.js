@@ -1,15 +1,10 @@
 $(document).ready(function () {
 
 
-// moment().format('MMMM Do YYYY, h:mm:ss a');
-// console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
-// moment().endOf('day').fromNow(); 
-
-
 // Get Current Day & Date
-function currentDay() {
-    $("#currentDay").html([moment().format('dddd, ' + 'MMMM Do YYYY')]);
-}
+$("#currentDay").html([moment().format('dddd, ' + 'MMMM Do YYYY')]);
+// function currentDay() {
+//     $("#currentDay").html([moment().format('dddd, ' + 'MMMM Do YYYY')]);}
 
 // function createSchedule() {
 //     let container = $("<div>").addClass("row").attr("id", `row${i}`);
@@ -40,18 +35,26 @@ function createSchedule(currentDay, toDo) {
 
     schedule.append(row);
     row.append($("<div>").addClass("col-2 hour time-block").text(hourBlock.format("hh:00 a")));
-    row.append($("<textarea>").addClass("col-9 description time-block").text(toDo));
+    row.append($("<textarea>").addClass("col-9 ${description} time-block").text(toDo));
     row.append($("<button>").addClass("col-1 saveBtn").html("<i class='fas fa-save'></i>"));
-    hourBlock.add("hour", 1);
+    hourBlock.add(1, "hour");
     time = moment();
+    
+
+    // let textDiv = $("<textarea>");
+    if (time.isAfter(hourBlock, "hour")) {
+        $("<textarea>").addClass("past");
+    } else if (time.isBefore(hourBlock, "hour")) {
+        $("<textarea>").addClass("future");
+    } else {
+        $("<textarea>").addClass("present");
+    }
 
     };
 
 };
 
 
-
 // Calling Functions
-$(currentDay);
-$(this).on("load", createSchedule());})
-// $(createSchedule);
+$(this).on("load", createSchedule());
+})
