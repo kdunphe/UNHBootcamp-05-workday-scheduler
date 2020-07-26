@@ -1,4 +1,4 @@
-$(document).ready()
+$(document).ready(function () {
 
 
 // moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -11,42 +11,47 @@ function currentDay() {
     $("#currentDay").html([moment().format('dddd, ' + 'MMMM Do YYYY')]);
 }
 
-function createSchedule() {
-    let container = $("<div>").addClass("row");
-    let hourCol = $("<div>").addClass("col-2 hour").text("placeholder");
-    let textCol = $("<div>").addClass("col-9 text").text("placeholder");
-    let saveCol = $("<div>").addClass("col-1 save").text("placeholder");
-    let saveBtn = $("<button>").addClass("btn fas fa-save");
-
-for (let i = 0; i < 12; i++) {
-    $(".container").append(container.append(hourCol,textCol,saveCol));
-
-}
-
-    // textCol += "<h1>Hi</h1>";
-
-    // return textCol;
-
-    // let hourCol = $("<div>");
-    // let p = $("p").text("hello!");
-
-    // hourCol.html(p);
+// function createSchedule() {
+//     let container = $("<div>").addClass("row").attr("id", `row${i}`);
+//     let hourCol = $("<div>").addClass("col-2 hour").text("placeholder");
+//     let textCol = $("<div>").addClass("col-9 text").text("placeholder");
+//     let saveCol = $("<div>").addClass("col-1 save").text("placeholder");
+//     let saveBtn = $("<button>").addClass("btn fas fa-save");
 
 
-    // $("div").html(function(){
-    //     $("p").append(" <b>Appended text</b>.");
-    //   });
+// for (let i = 0; i < 12; i++) {
+//     $(".container").append(container.append(hourCol,textCol,saveCol));
+// }
 
 
-    // $( ".hi" ).add( "span" ).css( "background", "yellow" );
-    // $(".hi").append("<p>Hi</p>");
-    // $().append("<p>Hi</p>");
 
-}
+// Variables
+let time = moment();
+let toDo = "";
+
+
+// Adding Schedule Elements to the Page
+function createSchedule(currentDay, toDo) {
+    let hourBlock = moment(currentDay).hour(8);
+    let schedule = $(".container");
+
+    for (let i = 1; i < 11; i++) {
+        let row = $("<div>").addClass("row");
+
+    schedule.append(row);
+    row.append($("<div>").addClass("col-2 hour time-block").text(hourBlock.format("hh:00 a")));
+    row.append($("<textarea>").addClass("col-9 description time-block").text(toDo));
+    row.append($("<button>").addClass("col-1 saveBtn").html("<i class='fas fa-save'></i>"));
+    hourBlock.add("hour", 1);
+    time = moment();
+
+    };
+
+};
 
 
 
 // Calling Functions
 $(currentDay);
-$(this).on("load", createSchedule());
+$(this).on("load", createSchedule());})
 // $(createSchedule);
