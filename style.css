@@ -21,6 +21,12 @@ body {
     border-radius: 0;
     border-bottom: 10px solid black;
   }
+
+  .col-2, .col-9, .col-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
   .description{
     white-space: pre-wrap;
@@ -67,7 +73,7 @@ body {
   }
   
   .saveBtn i:hover {
-    font-size: 20px;
+    font-size: 24px;
     transition: all .3s ease-in-out;
   }
   
