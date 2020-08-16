@@ -44,35 +44,15 @@ $(document).ready(function () {
 
 
 
-    // Variables
-    // let time = moment();
-    // let toDo = "";
 
-    // function createSchedule(currentDay, toDo) {
-    //     let hourBlock = moment(currentDay).hour(8);
-    //     const schedule = $(".container");
+    $("saveBtn").on("click", function () {
+        let input = $(this).siblings(".description").val(); // this value will capture the value of our textArea
+        var hour = $(this).parent().attr("id"); // this captures the id which tells us which hour the event coresponds to
+        localStorage.setItem(hour, activity); // setting the hour and event to local storage
+      });
 
-    //     for (let i = 1; i < 11; i++) {
-    //         const row = $("<div>").addClass("row");
+      $("#hour-9 .description").val(localStorage.getItem("hour-9"));
 
-    //     schedule.append(row);
-    //     row.append($("<div>").addClass("col-2 hour time-block").text(hourBlock.format("hh:00 a")));
-    //     row.append($("<textarea>").addClass(`col-9 ${description} time-block`).text(toDo));
-    //     row.append($("<button>").addClass("col-1 saveBtn").html("<i class='fas fa-save'></i>"));
-    //     hourBlock.add(1, "hour");
-    //     time = moment();
-
-
-    //     let description = "";
-    //     if (today.isBefore(timeBlock, "hour")) {
-    //         description = "future"
-    //     } else if (today.isAfter(timeBlock, "hour")) {
-    //         description = "past"
-    //     } else {
-    //         description = "present"
-    //     };
-
-    // };
 
 
     // Calling Functions
